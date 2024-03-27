@@ -2,8 +2,16 @@ name: Ejecutar Job Según Selección
 
 on:
   push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs: 
+      language: 
+        required: true
+        default: 'Scala'
+        description: Please select the FW action
+        type: choice
+        options:
+        - Scala
+        - Python
 
 jobs:
   seleccionar_y_ejecutar:
@@ -14,20 +22,4 @@ jobs:
 
       - name: Seleccionar y Ejecutar
         run: |
-          # Preguntar al usuario qué trabajo desea ejecutar
-          read -p "Selecciona un trabajo (A, B, C): " trabajo
-
-          # Ejecutar el trabajo seleccionado
-          if [ "$trabajo" = "A" ]; then
-            echo "Ejecutando el Trabajo A"
-            # Aquí ejecuta los comandos para el Trabajo A
-          elif [ "$trabajo" = "B" ]; then
-            echo "Ejecutando el Trabajo B"
-            # Aquí ejecuta los comandos para el Trabajo B
-          elif [ "$trabajo" = "C" ]; then
-            echo "Ejecutando el Trabajo C"
-            # Aquí ejecuta los comandos para el Trabajo C
-          else
-            echo "Selección inválida"
-            exit 1
-          fi
+          echo ${{ github.event.inputs.language }}
