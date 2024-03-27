@@ -1,7 +1,6 @@
 name: Ejecutar Job Según Selección
 
 on:
-  push:
   workflow_dispatch:
     inputs: 
       language: 
