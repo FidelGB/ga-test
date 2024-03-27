@@ -1,0 +1,15 @@
+name: Ejecutar Jobs según Input List
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  execute-job:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        input-list: ["opcion1", "opcion2", "opcion3"]
+    steps:
+      - name: Ejecutar Job según Input
+        run: echo "Ejecutando job para ${{ matrix.input-list }}"
