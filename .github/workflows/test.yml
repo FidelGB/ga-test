@@ -1,15 +1,33 @@
-name: Ejecutar Jobs según Input List
+name: Ejecutar Job Según Selección
+
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
-  execute-job:
+  seleccionar_y_ejecutar:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        input-list: ["opcion1", "opcion2", "opcion3"]
     steps:
-      - name: Ejecutar Job según Input
-        run: echo "Ejecutando job para ${{ matrix.input-list }}"
+      - name: Clonar Repositorio
+        uses: actions/checkout@v2
+
+      - name: Seleccionar y Ejecutar
+        run: |
+          # Preguntar al usuario qué trabajo desea ejecutar
+          read -p "Selecciona un trabajo (A, B, C): " trabajo
+
+          # Ejecutar el trabajo seleccionado
+          if [ "$trabajo" = "A" ]; then
+            echo "Ejecutando el Trabajo A"
+            # Aquí ejecuta los comandos para el Trabajo A
+          elif [ "$trabajo" = "B" ]; then
+            echo "Ejecutando el Trabajo B"
+            # Aquí ejecuta los comandos para el Trabajo B
+          elif [ "$trabajo" = "C" ]; then
+            echo "Ejecutando el Trabajo C"
+            # Aquí ejecuta los comandos para el Trabajo C
+          else
+            echo "Selección inválida"
+            exit 1
+          fi
