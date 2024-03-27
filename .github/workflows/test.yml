@@ -1,4 +1,4 @@
-name: Ejecutar Job Según Selección
+name: Publish Snapshot
 
 on:
   workflow_dispatch:
