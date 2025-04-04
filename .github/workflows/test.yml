@@ -1,16 +1,9 @@
 name: Publish Snapshot
 
 on:
-  workflow_dispatch:
-    inputs: 
-      language: 
-        required: true
-        default: 'Scala'
-        description: Select protos lang version
-        type: choice
-        options:
-        - Scala
-        - Python
+  push:
+    branches:
+      "master"
 
 jobs:
   seleccionar_y_ejecutar:
@@ -20,6 +13,3 @@ jobs:
       - name: Clonar Repositorio
         uses: actions/checkout@v2
 
-      - name: Seleccionar y Ejecutar
-        run: |
-          echo ${{ github.event.inputs.language }}
